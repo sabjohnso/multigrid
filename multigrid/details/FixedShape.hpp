@@ -15,4 +15,7 @@ namespace Multigrid::Details
     static constexpr Shape<NDims> value{Sizes ...};
   }; // end of class Shape
 
+  template<integer ... Sizes>
+  constexpr FixedShape<Sizes...> fixed_shape{};
+
 } // end of namespace Multigrid::Details

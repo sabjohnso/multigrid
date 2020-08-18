@@ -14,4 +14,7 @@ namespace Multigrid::Details
   public:
     static constexpr Halo<NDims> value{Sizes ...};
   }; // end of class Halo
+
+  template<integer ... Sizes>
+  constexpr FixedHalo<Sizes ...> fixed_halo{};
 } // end of namespace Multigrid::Details

@@ -15,7 +15,7 @@ namespace Multigrid::Details
   class FixedSubgrid;
 
   template<typename T, integer ... Ns, integer ... NHs>
-  class FixedSubgrid<T, FixedShape<Ns...>, FixedShape<NHs...>>
+  class FixedSubgrid<T, FixedShape<Ns...>, FixedHalo<NHs...>>
   {
     static_assert(count_args(Ns...) == count_args(NHs...));
 
@@ -60,8 +60,13 @@ namespace Multigrid::Details
 
   }; // end of class FixedSubgrid
 
-  // template<typename T, size_type NDims, size_type ... Ns, size_type ... NHs>
-  // Subgrid(Root<T,NDims> root, Offset<NDims> offset, FixedShape<Ns ...>, FixedHalo<NHs ...>, integer level)
-  //   -> FixedSubgrid<T,FixedShape<Ns ...>, FixedHalo<NHs ...> >;
+  template<typename T, size_type NDims, integer ... Ns, integer ... NHs>
+  FixedSubgrid(
+    Root<T,NDims> root,
+    Offset<NDims> offset,
+    FixedShape<Ns ...> shape,
+    FixedHalo<NHs ...> halo,
+    integer level)
+    -> FixedSubgrid<T, FixedShape<Ns ...>, FixedHalo<NHs ...> >;
 
 } // end of namespace Multigrid::Details
